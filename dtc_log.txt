@@ -1,0 +1,28 @@
+2025-10-26 21:48:20,819 - INFO - Ouverture can0 @ 500k
+2025-10-26 21:48:20,819 - INFO - TX ID: 0x7E0, RX ID: 0x7E8
+2025-10-26 21:48:20,820 - DEBUG - can config: {'interface': 'socketcan', 'channel': 'can0'}
+2025-10-26 21:48:20,824 - INFO - Created a socket
+2025-10-26 21:48:20,824 - DEBUG - Binding socket to channel=can0
+2025-10-26 21:48:20,825 - DEBUG - Bound socket.
+2025-10-26 21:48:20,826 - DEBUG - Given rxfn is considered blocking
+2025-10-26 21:48:20,827 - INFO - Lecture des DTC (Mode 03)…
+2025-10-26 21:48:20,828 - DEBUG - Enqueuing a SendRequest for 1 bytes and TAT=Physical
+2025-10-26 21:48:20,828 - DEBUG - Tx: <7E0> (08) [ ]	 0103000000000000
+2025-10-26 21:48:20,828 - DEBUG - We've been asked to write a message to the bus
+2025-10-26 21:48:20,828 - DEBUG - sending: Timestamp:        0.000000    ID:      7e0    S Rx                DL:  8    01 03 00 00 00 00 00 00
+2025-10-26 21:48:20,839 - DEBUG - Rx: <0C6> (08) [i]	 7ff37fff7fe48824
+2025-10-26 21:48:20,839 - DEBUG - Rx: <12E> (08) [i]	 c87ffe7fd0ffff00
+2025-10-26 21:48:20,839 - DEBUG - Rx: <2F8> (05) [i]	 7100ffff00
+2025-10-26 21:48:20,839 - DEBUG - Rx: <1F6> (08) [i]	 1e800014401300fe
+2025-10-26 21:48:20,839 - DEBUG - Rx: <186> (07) [i]	 00003203200020
+2025-10-26 21:48:20,840 - DEBUG - Rx: <7E8> (08) [p]	 024300aaaaaaaaaa
+2025-10-26 21:48:20,840 - DEBUG - Rx: <18A> (06) [i]	 2f8000069000
+2025-10-26 21:48:20,840 - DEBUG - Rx: <534> (05) [i]	 8000000232
+2025-10-26 21:48:20,840 - DEBUG - Rx: <212> (05) [i]	 ff19000000
+2025-10-26 21:48:20,840 - DEBUG - Rx: <671> (02) [i]	 0000
+2025-10-26 21:48:20,840 - DEBUG - Rx: <6F8> (03) [i]	 4c10c4
+2025-10-26 21:48:20,851 - INFO - DTC trouvés: P0201, B0324
+2025-10-26 21:48:20,851 - DEBUG - Réponse brute: 4300
+2025-10-26 21:48:20,851 - INFO - DTC enregistrés dans dtc_log.txt
+2025-10-26 21:48:20,851 - DEBUG - Closing raw can socket
+2025-10-26 21:48:20,851 - INFO - Session terminée
