@@ -1,0 +1,40 @@
+2025-10-29 17:57:19,079 - INFO - Ouverture can0 @ 500k
+2025-10-29 17:57:19,079 - INFO - TX ID: 0x7E0, RX ID: 0x7E8
+2025-10-29 17:57:19,081 - DEBUG - can config: {'interface': 'socketcan', 'channel': 'can0'}
+2025-10-29 17:57:19,089 - INFO - Created a socket
+2025-10-29 17:57:19,089 - DEBUG - Binding socket to channel=can0
+2025-10-29 17:57:19,090 - DEBUG - Bound socket.
+2025-10-29 17:57:19,091 - DEBUG - Given rxfn is considered blocking
+2025-10-29 17:57:19,093 - INFO - Lecture des DTC (Mode 03)…
+2025-10-29 17:57:19,093 - DEBUG - Enqueuing a SendRequest for 1 bytes and TAT=Physical
+2025-10-29 17:57:19,093 - DEBUG - Tx: <7E0> (08) [ ]	 0103000000000000
+2025-10-29 17:57:19,093 - DEBUG - We've been asked to write a message to the bus
+2025-10-29 17:57:19,094 - DEBUG - sending: Timestamp:        0.000000    ID:      7e0    S Rx                DL:  8    01 03 00 00 00 00 00 00
+2025-10-29 17:57:19,094 - DEBUG - Rx: <212> (05) [i]	 ff19000000
+2025-10-29 17:57:19,094 - DEBUG - Rx: <12E> (08) [i]	 c87ffe7fc0ffff00
+2025-10-29 17:57:19,105 - DEBUG - Rx: <1F6> (08) [i]	 1e800012401300fe
+2025-10-29 17:57:19,105 - DEBUG - Rx: <186> (07) [i]	 00003203200020
+2025-10-29 17:57:19,106 - DEBUG - Rx: <7E8> (08) [p]	 0443010183aaaaaa
+2025-10-29 17:57:19,106 - DEBUG - Rx: <18A> (06) [i]	 2dd00006c600
+2025-10-29 17:57:19,106 - DEBUG - Rx: <391> (06) [i]	 00000002d000
+2025-10-29 17:57:19,106 - DEBUG - Rx: <0C6> (08) [i]	 805d7fff7fe784ba
+2025-10-29 17:57:19,106 - DEBUG - Rx: <5EF> (02) [i]	 0080
+2025-10-29 17:57:19,106 - DEBUG - Rx: <35C> (08) [i]	 f2c676266b2b6228
+2025-10-29 17:57:19,106 - DEBUG - Rx: <500> (05) [i]	 02680708e2
+2025-10-29 17:57:19,106 - DEBUG - Rx: <552> (02) [i]	 02f4
+2025-10-29 17:57:19,106 - DEBUG - Rx: <5DE> (08) [i]	 0000008012000040
+2025-10-29 17:57:19,107 - DEBUG - Rx: <12E> (08) [i]	 c87ffe7fb0ffff00
+2025-10-29 17:57:19,107 - DEBUG - Rx: <242> (07) [i]	 0000ffeffe000c
+2025-10-29 17:57:19,107 - DEBUG - Rx: <29A> (08) [i]	 0000000000000300
+2025-10-29 17:57:19,107 - DEBUG - Rx: <29C> (08) [i]	 00000000ffff0000
+2025-10-29 17:57:19,107 - DEBUG - Rx: <352> (04) [i]	 54000000
+2025-10-29 17:57:19,107 - DEBUG - Rx: <354> (08) [i]	 0000000000000000
+2025-10-29 17:57:19,107 - DEBUG - Rx: <2F8> (05) [i]	 7100ffff00
+2025-10-29 17:57:19,117 - INFO - DTC trouvés: P0101
+
+=== Scan DTC - 2025-10-29 17:57:19 ===
+DTC trouvés: P0101
+----------------------------------------
+2025-10-29 17:57:19,118 - INFO - DTC enregistrés dans dtc_log2.txt
+2025-10-29 17:57:19,118 - DEBUG - Closing raw can socket
+2025-10-29 17:57:19,118 - INFO - Session terminée

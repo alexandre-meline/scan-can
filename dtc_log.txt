@@ -21,7 +21,7 @@
 2025-10-26 21:48:20,840 - DEBUG - Rx: <212> (05) [i]	 ff19000000
 2025-10-26 21:48:20,840 - DEBUG - Rx: <671> (02) [i]	 0000
 2025-10-26 21:48:20,840 - DEBUG - Rx: <6F8> (03) [i]	 4c10c4
-2025-10-26 21:48:20,851 - INFO - DTC trouvés: P0201, B0324
+2025-10-26 21:48:20,851 - INFO - DTC trouvés: P0201, B0324, P0101
 2025-10-26 21:48:20,851 - DEBUG - Réponse brute: 4300
 2025-10-26 21:48:20,851 - INFO - DTC enregistrés dans dtc_log.txt
 2025-10-26 21:48:20,851 - DEBUG - Closing raw can socket

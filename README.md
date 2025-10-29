@@ -98,7 +98,25 @@ sudo ./setup_can.sh --no-service           # Sans service systemd
 - `--test-only` : Tester l'interface existante
 - `--no-service` : Ne pas créer le service systemd
 
-### 3. `main.py` - Scanner DTC principal
+### 3. `record_can.sh` - Enregistrement du trafic CAN
+Enregistrement simple du bus CAN avec horodatage (via `candump`).
+
+```bash
+# Enregistrement par défaut (can0) avec horodatage absolu
+./record_can.sh
+
+# Spécifier l'interface et le fichier de sortie
+./record_can.sh can1 runs/can1_$(date +%F_%H%M%S).log
+
+# Inclure les trames d'erreur (bus off, error frames)
+./record_can.sh can0 can_capture.log --errors
+```
+
+Notes:
+- Le script nécessite `can-utils` (commande `candump`).
+- Les logs générés sont lisibles et rejouables avec `canplayer` (voir plus bas).
+
+### 4. `main.py` - Scanner DTC principal
 **Lecture et effacement des codes d'erreur DTC**
 
 ```bash
@@ -127,7 +145,7 @@ python main.py -v --timeout 5.0 --clear     # Timeout personnalisé
 - `--timeout` : Timeout requêtes en secondes (défaut: 2.0)
 - `--no-scan` : Effacement seulement, pas de lecture
 
-### 4. `cleanup_can.sh` - Nettoyage CAN
+### 5. `cleanup_can.sh` - Nettoyage CAN
 **Fermeture propre des interfaces et processus CAN**
 
 ```bash
@@ -148,14 +166,37 @@ sudo ./cleanup_can.sh --status              # Statut avant nettoyage
 - Déchargement des modules kernel (optionnel)
 - Nettoyage des fichiers temporaires
 - Rapport de statut après nettoyage
+## 🔬 Diagnostic avancé après effacement des DTC
+
+Quand les DTC ont été effacés, il reste utile d'observer le comportement en temps réel et le trafic CAN pour identifier la cause racine. Voici un guide pratique avec votre câble USB2CAN :
+
+### 1) Capturer un « baseline » au ralenti
+```bash
+# Interface active (ex: can0)
 
 **Options :**
 - `--all` : Arrêter toutes les interfaces
 - `--kill-processes` : Tuer tous les processus CAN
 - `--unload-modules` : Décharger les modules kernel
+
+Que regarder:
+- Erreurs dans le bus (si `--errors`): frames d’erreur récurrentes
+- Variation régulière des IDs (ex: trames moteur/ECU, ABS, etc.)
+- Présence d’IDs « bruyants » ou absents selon le modèle
+
+### 2) Reproduire le symptôme et enregistrer
+```bash
 - `--full-cleanup` : Nettoyage complet
 - `--status` : Afficher le statut
 
+
+Conseils:
+- Notez les horodatages réels (ex: « 12:03:15: raté d’allumage ressenti ») pour corréler.
+- Faites des runs courts et ciblés (1–3 minutes) pour faciliter l’analyse.
+
+### 3) Filtrer le trafic pour réduire le bruit
+`candump` permet de filtrer par ID(s) pour isoler des ECU:
+```bash
 ## 📋 Workflow recommandé
 
 ### Premier démarrage
@@ -163,14 +204,34 @@ sudo ./cleanup_can.sh --status              # Statut avant nettoyage
 # 1. Installation
 python3 install.py
 
+### 4) Rejouer les captures et comparer
+```bash
+
 # 2. Configuration CAN
 sudo ./setup_can.sh
 
 # 3. Test de base
+
+Astuce: utilisez une interface virtuelle `vcan0` pour rejouer sans matériel physique:
+```bash
 source venv/bin/activate
 python main.py -v
 
 # 4. Nettoyage (optionnel)
+
+### 5) Analyse avec Wireshark (SocketCAN)
+Wireshark peut lire `can0/vcan0` directement:
+1. Ouvrez Wireshark → Capture → Options → Sélectionnez `can0` ou `vcan0`
+2. Filtrez avec `can.id == 0x7E8` ou plage `can.id >= 0x700 && can.id <= 0x7EF`
+3. Comparez baseline vs symptom pour repérer des trames manquantes ou anormales.
+
+### 6) Bonnes pratiques de diagnostic
+- Toujours capturer un baseline sain pour comparer.
+- Annoter les événements (journal papier ou smartphone) avec l’heure exacte.
+- Réaliser des runs séparés par scénario (ralenti, accélération, charge, clim ON/OFF…).
+- Si le bus est trop bruyant, filtrez par ECU/ID pour investiguer progressivement.
+- Après tests, exécutez `sudo ./cleanup_can.sh` pour fermer proprement les interfaces.
+
 sudo ./cleanup_can.sh
 ```
 
